@@ -1,16 +1,3 @@
 // src/api/mockTasks.js
 
-export const mockTasks = [
-  {
-    id: 1,
-    title: 'Покормить кота (мок)',
-    description: 'Это фейковая задача для локальной разработки.',
-    completed: false,
-  },
-  {
-    id: 2,
-    title: 'Полить цветы (мок)',
-    description: 'Еще одна моковая задача.',
-    completed: true,
-  },
-]
+export const mockTasks = [{"id":"754b27c2-a654-407a-9aa5-55138d2fe8c7","title":"Test task","description":"Created from frontend","created_at":"2025-07-05T19:56:34.136308Z","updated_at":"2025-07-05T19:56:34.136308Z","completed":false},{"id":"c6d89439-a5f4-495e-af52-60569ade4638","title":"Test task","description":"Created from frontend","created_at":"2025-07-05T19:56:36.869308Z","updated_at":"2025-07-05T19:56:36.869308Z","completed":false},{"id":"84f6e74e-c4c5-407e-a411-433cf33bae9f","title":"Example","description":"Desc","created_at":"2025-07-06T12:52:50.318939Z","updated_at":"2025-07-06T12:52:50.318939Z","completed":false},{"id":"8bc50d6a-4ddf-4152-9bb5-e9be16080ada","title":"Example","description":"Desc","created_at":"2025-07-06T13:00:17.300792Z","updated_at":"2025-07-06T13:00:17.300792Z","completed":false},{"id":"75c2005f-e7d3-4773-85ca-d70e9be80208","title":"Test task","description":"Created from frontend","created_at":"2025-07-05T19:36:35.569614Z","updated_at":"2025-07-05T19:36:35.569614Z","done_at":"2025-07-06T13:07:52.209806Z","completed":true},{"id":"07749913-192d-4a3e-a928-a53a5d025750","title":"deploy pet-project","description":"deploy","created_at":"2025-07-15T16:05:48.182861Z","updated_at":"2025-07-15T16:05:48.182861Z","completed":false}]
