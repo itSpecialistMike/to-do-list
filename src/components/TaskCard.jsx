@@ -1,8 +1,10 @@
 // src/components/TaskCard.jsx
 export default function TaskCard({ title, description, onDelete, id, completed, onComplete, onOpenDetails }) {
   return (
-    <div onClick={() => onOpenDetails({ id, title, description, completed })} className={`relative w-64 h-100 text-2xl p-5 rounded-4xl shadow-2xl overflow-hidden
-    hover:scale-125 transition-transform duration-300 ease-in-out ${completed ? 'bg-[#44bd32] opacity-70 hover:opacity-100 transition duration-300 text-white' : 'bg-[#f1f2f6] text-black'}`}>
+    <div onClick={() => onOpenDetails({ id, title, description, completed })} 
+    className={`relative w-64 h-[400px] text-2xl p-5 rounded-4xl shadow-2xl overflow-hidden
+    hover:scale-125 transition-transform duration-300 ease-in-out 
+    ${completed ? 'bg-[#44bd32] opacity-70 hover:opacity-100 transition duration-300 text-white' : 'bg-[#f1f2f6] text-black'}`}>
         <button
         onClick={(e) => {
             e.stopPropagation()

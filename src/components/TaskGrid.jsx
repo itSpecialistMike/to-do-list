@@ -71,8 +71,8 @@ export default function TaskGrid() {
 
     return (
     
-        <div className="mx-20 ml-60 mr-60">
-            <div className="h-screen flex flex-wrap justify-items-center justify-center gap-10">
+        <div className="mx-60">
+            <div className="h-screen flex flex-wrap justify-items-center justify-center gap-x-10 gap-y-10">
                 {tasks.map(task => (
                     <TaskCard 
                         key={task.id}  
