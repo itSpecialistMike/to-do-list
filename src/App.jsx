@@ -4,6 +4,7 @@ import Header from './components/Header'
 import LocalDashboard from './components/LocalDashbord'
 import Carousel from "./components/Carousel";
 import './App.css'
+import Footer from './components/Footer';
 
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
       <Carousel />
       {/* <LocalDashboard />
       <TaskGrid /> */}
+      <Footer />
     </div>
   )
 }

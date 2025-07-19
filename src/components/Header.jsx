@@ -20,7 +20,7 @@ export default function Header() {
           </a>
         </div>
 
-        <div className="hidden lg:flex lg:gap-x-12">
+         <div className="hidden lg:flex lg:gap-x-12">
           <div className="relative">
             <button
               type="button"
