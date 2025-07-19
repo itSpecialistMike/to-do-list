@@ -14,8 +14,8 @@ export default function TaskCard({ title, description, onDelete, id, completed, 
         >
         ❌ 
         </button>
-        <h3 className="text-lg font-semibold">{title}</h3>
-        <p className="text-sm text-gray-600">{description}</p>
+        <h3 className="text-lg font-semibold text-wrap">{title}</h3>
+        <p className="text-sm text-gray-600 text-wrap">{description}</p>
 
         {/* Кнопка или статус "Выполнена" */}
         {!completed ? (

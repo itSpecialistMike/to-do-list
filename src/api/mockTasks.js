@@ -1,3 +1,54 @@
 // src/api/mockTasks.js
 
-export const mockTasks = [{"id":"754b27c2-a654-407a-9aa5-55138d2fe8c7","title":"Test task","description":"Created from frontend","created_at":"2025-07-05T19:56:34.136308Z","updated_at":"2025-07-05T19:56:34.136308Z","completed":false},{"id":"c6d89439-a5f4-495e-af52-60569ade4638","title":"Test task","description":"Created from frontend","created_at":"2025-07-05T19:56:36.869308Z","updated_at":"2025-07-05T19:56:36.869308Z","completed":false},{"id":"84f6e74e-c4c5-407e-a411-433cf33bae9f","title":"Example","description":"Desc","created_at":"2025-07-06T12:52:50.318939Z","updated_at":"2025-07-06T12:52:50.318939Z","completed":false},{"id":"8bc50d6a-4ddf-4152-9bb5-e9be16080ada","title":"Example","description":"Desc","created_at":"2025-07-06T13:00:17.300792Z","updated_at":"2025-07-06T13:00:17.300792Z","completed":false},{"id":"75c2005f-e7d3-4773-85ca-d70e9be80208","title":"Test task","description":"Created from frontend","created_at":"2025-07-05T19:36:35.569614Z","updated_at":"2025-07-05T19:36:35.569614Z","done_at":"2025-07-06T13:07:52.209806Z","completed":true},{"id":"07749913-192d-4a3e-a928-a53a5d025750","title":"deploy pet-project","description":"deploy","created_at":"2025-07-15T16:05:48.182861Z","updated_at":"2025-07-15T16:05:48.182861Z","completed":false}]
+export const mockTasks = [
+  {
+    id: "1a2b3c4d-0001",
+    title: "Купить продукты",
+    description: "Молоко, хлеб, яйца, фрукты",
+    created_at: "2025-07-10T09:00:00Z",
+    updated_at: "2025-07-10T09:00:00Z",
+    completed: false,
+  },
+  {
+    id: "1a2b3c4d-0002",
+    title: "Подготовить презентацию",
+    description: "Собрать слайды для встречи с клиентом",
+    created_at: "2025-07-11T10:30:00Z",
+    updated_at: "2025-07-11T11:00:00Z",
+    completed: false,
+  },
+  {
+    id: "1a2b3c4d-0003",
+    title: "Встреча с командой",
+    description: "Обсудить текущие задачи и планы",
+    created_at: "2025-07-09T14:00:00Z",
+    updated_at: "2025-07-09T14:15:00Z",
+    completed: true,
+    done_at: "2025-07-09T15:00:00Z",
+  },
+  {
+    id: "1a2b3c4d-0004",
+    title: "Записаться к врачу",
+    description: "Проверить график и записаться на прием",
+    created_at: "2025-07-08T08:00:00Z",
+    updated_at: "2025-07-08T08:30:00Z",
+    completed: false,
+  },
+  {
+    id: "1a2b3c4d-0005",
+    title: "Написать отчет по проекту",
+    description: "Подготовить финальный отчет для руководства",
+    created_at: "2025-07-07T12:00:00Z",
+    updated_at: "2025-07-07T12:45:00Z",
+    completed: true,
+    done_at: "2025-07-07T16:00:00Z",
+  },
+  {
+    id: "1a2b3c4d-0006",
+    title: "Обновить сайт",
+    description: "Добавить новую информацию на главную страницу",
+    created_at: "2025-07-06T09:30:00Z",
+    updated_at: "2025-07-06T10:00:00Z",
+    completed: false,
+  },
+]

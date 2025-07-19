@@ -72,6 +72,7 @@ export default function TaskGrid() {
     return (
     
         <div className="mx-60">
+            <p className='text-center text-6xl font-bold text-black text-shadow-2xs my-20'>Общий дашборд</p>
             <div className="flex flex-wrap justify-items-center justify-center gap-x-10 gap-y-20">
                 {tasks.map(task => (
                     <TaskCard 

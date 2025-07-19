@@ -1,93 +1,65 @@
-// src/components/TaskGrid.jsx
 import TaskCard from './TaskCard'
 import AddTaskModal from './AddTaskModal'
 import AddTaskButton from './AddTaskButton'
 import TaskDetailsModal from './TaskDetailsModal'
 import { useState } from 'react'
-import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { addTask, deleteTask, completeTask } from '../store/localTasksSlice'
 
-export default function TaskGrid() {
-    // 🧠 Состояние задач
-    const [tasks, setTasks] = useState([])
+export default function LocalDashboard() {
+  const tasks = useSelector(state => state.localTasks || []) // страховка на случай undefined
+  const dispatch = useDispatch()
 
-    // ➕ Добавление новой задачи
-    const addTask = (title, description) => {
-    const newTask = {
-        id: crypto.randomUUID(),
-        title,
-        description,
-        completed: false,
-    }
-    setTasks(prev => [...prev, newTask])
-    }
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [detailsModalOpen, setDetailsModalOpen] = useState(false)
+  const [modalContent, setModalContent] = useState({ title: '', description: '' })
 
-    // ❌ Удаление задачи
-    const handleDelete = (idToDelete) => {
-    setTasks(prev => prev.filter(task => task.id !== idToDelete))
-    }
+  const handleAddTask = (title, description) => {
+    dispatch(addTask(title, description))
+  }
 
-    // ✅ Отметить задачу как выполненную
-    const handleComplete = (id) => {
-    setTasks(prev =>
-        prev.map(task =>
-        task.id === id ? { ...task, completed: true } : task
-        )
-    )
-    }
+  const handleDelete = (id) => dispatch(deleteTask(id))
+  const handleComplete = (id) => dispatch(completeTask(id))
 
-    // 📌 Модалка создания задачи
-    const [isModalOpen, setIsModalOpen] = useState(false)
+  const handleOpenDetails = (task) => {
+    setModalContent(task)
+    setDetailsModalOpen(true)
+  }
 
-    // 🔍 Модалка деталей задачи
-    const [detailsModalOpen, setDetailsModalOpen] = useState(false)
-    const [modalContent, setModalContent] = useState({
-    title: '',
-    description: '',
-    })
+  return (
+    <div className="mx-60">
+      <p className='text-center text-6xl font-bold text-black text-shadow-2xs my-20'>Личные дашборд</p>
+      <div className="flex flex-wrap justify-items-center justify-center gap-x-10 gap-y-20">
+        {tasks.map(task => (
+          <TaskCard 
+            key={task.id}  
+            id={task.id} 
+            title={task.title} 
+            description={task.description} 
+            completed={task.completed} 
+            onDelete={handleDelete}
+            onComplete={handleComplete}
+            onOpenDetails={handleOpenDetails}
+          />
+        ))}
+        <AddTaskButton onClick={() => setIsModalOpen(true)} />
+      </div>    
 
-    // 📄 Открыть подробности задачи
-    const handleOpenDetails = (task) => {
-        setModalContent(task)
-        setDetailsModalOpen(true)
-    }
+      <AddTaskModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleAddTask}
+      />
 
-
-    return (
-    
-        <div className="mx-60">
-            <div className="flex flex-wrap justify-items-center justify-center gap-x-10 gap-y-20">
-                {tasks.map(task => (
-                    <TaskCard 
-                        key={task.id}  
-                        id={task.id} 
-                        title={task.title} 
-                        description={task.description} 
-                        completed={task.completed} 
-                        onDelete={handleDelete}
-                        onComplete={handleComplete}
-                        onOpenDetails={handleOpenDetails}
-                    />
-                ))}
-                <AddTaskButton onClick={() => setIsModalOpen(true)} />
-            </div>    
-
-            <AddTaskModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                onSubmit={addTask}
-            />
-
-
-            <TaskDetailsModal
-                isOpen={detailsModalOpen}
-                onClose={() => setDetailsModalOpen(false)}
-                title={modalContent.title}
-                description={modalContent.description}
-                completed={modalContent.completed}
-                onComplete={() => handleComplete(modalContent.id)}
-                onDelete={() => handleDelete(modalContent.id)}
-            />
-
-        </div>
+      <TaskDetailsModal
+        isOpen={detailsModalOpen}
+        onClose={() => setDetailsModalOpen(false)}
+        title={modalContent.title}
+        description={modalContent.description}
+        completed={modalContent.completed}
+        onComplete={() => handleComplete(modalContent.id)}
+        onDelete={() => handleDelete(modalContent.id)}
+      />
+    </div>
   )
 }
