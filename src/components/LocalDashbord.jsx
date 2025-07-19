@@ -50,7 +50,7 @@ export default function LocalDashboard() {
 
   return (
     <div className="mx-60">
-      <p className='text-center text-6xl font-bold text-black text-shadow-2xs my-20'>Личный дашборд</p>
+      <p className='text-center text-6xl font-bold text-black text-shadow-2xs my-20'>Личные дашборд</p>
       <div className="flex flex-wrap justify-items-center justify-center gap-x-10 gap-y-20">
         {tasks.map(task => (
           <TaskCard 
@@ -81,7 +81,7 @@ export default function LocalDashboard() {
         completed={modalContent.completed}
         onComplete={() => handleComplete(modalContent.id)}
         onDelete={() => handleDelete(modalContent.id)}
-        //onSave={handleSave}  // передаём функцию сохранения
+        onSave={handleSave}  // передаём функцию сохранения
       />
     </div>
   )
