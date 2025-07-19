@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 import { mockTasks } from '../api/mockTasks'
 
 const API_URL = import.meta.env.VITE_API_URL
-const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true'
+const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'false'
 
 export default function TaskGrid() {
     // 🧠 Состояние задач
@@ -20,7 +20,8 @@ export default function TaskGrid() {
       setTasks(mockTasks)
     } else {
         // 👇 Загружаем с API
-        fetch(`${API_URL}/tasks`)
+        // fetch(`${API_URL}/list`)
+        fetch('/api/list')
             .then(res => res.json())
             .then(data => setTasks(data))
             .catch(err => console.error('Ошибка загрузки с API:', err))
@@ -28,29 +29,69 @@ export default function TaskGrid() {
     }, [])
 
     // ➕ Добавление новой задачи
-    const addTask = (title, description) => {
-    const newTask = {
-        id: crypto.randomUUID(),
-        title,
-        description,
-        completed: false,
+    const addTask = async (title, description) => {
+        try {
+            const response = await fetch(`api/create`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ title, description })
+            })
+
+            if (!response.ok) {
+            throw new Error('Ошибка при добавлении задачи')
+            }
+
+            const createdTask = await response.json()
+            setTasks(prev => [...prev, createdTask]) // Добавляем задачу, которую вернул сервер
+        } catch (err) {
+            console.error('Ошибка добавления задачи:', err)
+        }
     }
-    setTasks(prev => [...prev, newTask])
-    }
+
 
     // ❌ Удаление задачи
-    const handleDelete = (idToDelete) => {
-    setTasks(prev => prev.filter(task => task.id !== idToDelete))
+    const handleDelete = async (idToDelete) => {
+    try {
+        const response = await fetch(`api/delete/${idToDelete}`, {
+        method: 'DELETE',
+        })
+
+        if (!response.ok) {
+        throw new Error('Ошибка при удалении задачи')
+        }
+
+        setTasks(prev => prev.filter(task => task.id !== idToDelete))
+    } catch (err) {
+        console.error('Ошибка при удалении задачи:', err)
+        }
     }
 
+
     // ✅ Отметить задачу как выполненную
-    const handleComplete = (id) => {
-    setTasks(prev =>
-        prev.map(task =>
-        task.id === id ? { ...task, completed: true } : task
-        )
-    )
+    const handleComplete = async (id) => {
+        try {
+            const response = await fetch(`api/done/${id}`, {
+            method: 'PUT',
+            })
+
+            if (!response.ok) {
+            throw new Error('Ошибка при завершении задачи')
+            }
+
+            // Обновляем состояние локально
+            setTasks(prev =>
+            prev.map(task =>
+                task.id === id ? { ...task, completed: true } : task
+            )
+            )
+        } catch (err) {
+            console.error('Ошибка при завершении задачи:', err)
+        }
     }
+
+
 
     // 📌 Модалка создания задачи
     const [isModalOpen, setIsModalOpen] = useState(false)
