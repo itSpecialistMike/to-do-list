@@ -28,8 +28,20 @@ const localTasksSlice = createSlice({
       const task = state.find(t => t.id === action.payload)
       if (task) task.completed = true
     },
+    uncompleteTask(state, action) {
+      const task = state.find(t => t.id === action.payload)
+      if (task) task.completed = false
+    },
+    updateTask: (state, action) => {
+      const { id, title, description } = action.payload
+      const task = state.find(t => t.id === id)
+      if (task) {
+        task.title = title
+        task.description = description
+      }
+    }
   },
 })
 
-export const { addTask, deleteTask, completeTask } = localTasksSlice.actions
+export const { addTask, deleteTask, completeTask, updateTask } = localTasksSlice.actions
 export default localTasksSlice.reducer

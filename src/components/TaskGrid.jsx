@@ -109,6 +109,37 @@ export default function TaskGrid() {
         setDetailsModalOpen(true)
     }
 
+    // Новая функция для сохранения обновленных данных задачи
+    const handleSave = async (title, description) => {
+        let id = modalContent.id
+
+        try {
+            const response = await fetch(`/api/update/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id, title, description }),
+            });
+
+            if (!response.ok) {
+            throw new Error('Ошибка при обновлении задачи');
+            }
+
+            // Обновляем состояние локально, сохраняя остальные поля
+            setTasks(prev =>
+            prev.map(task =>
+                task.id === id ? { ...task, title, description } : task
+            )
+            
+            );
+            setModalContent(prev => ({ ...prev, title, description }));
+        } catch (err) {
+            console.error('Ошибка при обновлении задачи:', err);
+        }
+        };
+
+
 
     return (
     
@@ -145,6 +176,7 @@ export default function TaskGrid() {
                 completed={modalContent.completed}
                 onComplete={() => handleComplete(modalContent.id)}
                 onDelete={() => handleDelete(modalContent.id)}
+                onSave={handleSave(modalContent.id)}
             />
 
         </div>

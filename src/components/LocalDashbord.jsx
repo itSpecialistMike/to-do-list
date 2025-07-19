@@ -4,15 +4,15 @@ import AddTaskButton from './AddTaskButton'
 import TaskDetailsModal from './TaskDetailsModal'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addTask, deleteTask, completeTask } from '../store/localTasksSlice'
+import { addTask, deleteTask, completeTask, updateTask } from '../store/localTasksSlice'
 
 export default function LocalDashboard() {
-  const tasks = useSelector(state => state.localTasks || []) // страховка на случай undefined
+  const tasks = useSelector(state => state.localTasks || [])
   const dispatch = useDispatch()
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [detailsModalOpen, setDetailsModalOpen] = useState(false)
-  const [modalContent, setModalContent] = useState({ title: '', description: '' })
+  const [modalContent, setModalContent] = useState({ title: '', description: '', id: null, completed: false })
 
   const handleAddTask = (title, description) => {
     dispatch(addTask(title, description))
@@ -26,9 +26,31 @@ export default function LocalDashboard() {
     setDetailsModalOpen(true)
   }
 
+  // Новая функция для сохранения обновленных данных задачи
+  const handleSave = ({ title, description }) => {
+    if (!modalContent.id) return
+
+    dispatch(updateTask({ 
+      id: modalContent.id,
+      title,
+      description
+    }))
+
+    // Обновляем modalContent, чтобы UI сразу обновился
+    setModalContent(prev => ({
+      ...prev,
+      title,
+      description,
+    }))
+
+    // Выходим из режима редактирования (в TaskDetailsModal)
+    // Для этого просто закрываем модалку, либо можно передавать проп для управления редактированием (в зависимости от реализации)
+    // Здесь просто закрывать не будем, чтобы юзер видел обновления
+  }
+
   return (
     <div className="mx-60">
-      <p className='text-center text-6xl font-bold text-black text-shadow-2xs my-20'>Личные дашборд</p>
+      <p className='text-center text-6xl font-bold text-black text-shadow-2xs my-20'>Личный дашборд</p>
       <div className="flex flex-wrap justify-items-center justify-center gap-x-10 gap-y-20">
         {tasks.map(task => (
           <TaskCard 
@@ -59,6 +81,7 @@ export default function LocalDashboard() {
         completed={modalContent.completed}
         onComplete={() => handleComplete(modalContent.id)}
         onDelete={() => handleDelete(modalContent.id)}
+        //onSave={handleSave}  // передаём функцию сохранения
       />
     </div>
   )
