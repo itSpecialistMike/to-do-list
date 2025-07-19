@@ -50,7 +50,7 @@ export default function LocalDashboard() {
 
   return (
     <div className="mx-60 my-30">
-      <p className='text-center text-6xl font-bold text-black text-shadow-2xs my-20'>Личные дашборд</p>
+      <p className='text-center text-6xl font-bold text-black text-shadow-2xs my-20'>Local dash</p>
       <div className="flex flex-wrap justify-items-center justify-center gap-x-10 gap-y-20">
         {tasks.map(task => (
           <TaskCard 
