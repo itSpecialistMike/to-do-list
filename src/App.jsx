@@ -1,17 +1,20 @@
 import { useEffect, useState } from 'react'
 import TaskGrid from './components/TaskGrid'
+import Header from './components/Header'
 import LocalDashboard from './components/LocalDashbord'
+import Carousel from "./components/Carousel";
 import './App.css'
+import Footer from './components/Footer';
 
 
 export default function App() {
   return (
     <div>
-      <header className={`pt-30 text-center text-9xl text-shadow-2xs font-bold text-black`}>
-        To-Do List...
-      </header>
-      <LocalDashboard />
-      <TaskGrid />
+      <Header />
+      <Carousel />
+      {/* <LocalDashboard />
+      <TaskGrid /> */}
+      <Footer />
     </div>
   )
 }
