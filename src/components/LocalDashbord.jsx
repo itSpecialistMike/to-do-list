@@ -5,27 +5,10 @@ import AddTaskButton from './AddTaskButton'
 import TaskDetailsModal from './TaskDetailsModal'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { mockTasks } from '../api/mockTasks'
-
-const API_URL = import.meta.env.VITE_API_URL
-const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true'
 
 export default function TaskGrid() {
     // 🧠 Состояние задач
     const [tasks, setTasks] = useState([])
-
-  useEffect(() => {
-    if (USE_MOCK) {
-      // 👇 Используем фейковые данные
-      setTasks(mockTasks)
-    } else {
-        // 👇 Загружаем с API
-        fetch(`${API_URL}/tasks`)
-            .then(res => res.json())
-            .then(data => setTasks(data))
-            .catch(err => console.error('Ошибка загрузки с API:', err))
-        }
-    }, [])
 
     // ➕ Добавление новой задачи
     const addTask = (title, description) => {
