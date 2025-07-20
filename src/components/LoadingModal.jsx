@@ -1,6 +1,6 @@
 // src/components/LoadingModal.jsx
-import { useEffect, useState } from 'react';
-import gif from '../assets/loading-wut.gif';
+import { useEffect, useState } from "react";
+import gif from "../assets/loading-wut.gif";
 
 export default function LoadingModal() {
   const [visible, setVisible] = useState(true);

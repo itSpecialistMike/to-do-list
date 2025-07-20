@@ -43,9 +43,6 @@ export default function Carousel() {
         </button>
       </div>
 
-
-
-
       {/* Контент слайдов: все рендерим, показываем только текущий слайд */}
       <div className="relative w-full h-full">
         {slides.map((slide, index) => (

@@ -1,11 +1,10 @@
-import { Link } from 'react-router-dom';
-import Header from '../components/Header'
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
 import Carousel from "../components/Carousel";
-import '../App.css'
-import Footer from '../components/Footer';
-import LoadingModal from '../components/LoadingModal';
-import ProjectDescription from '../components/ProjectDescription';
-
+import "../App.css";
+import Footer from "../components/Footer";
+import LoadingModal from "../components/LoadingModal";
+import ProjectDescription from "../components/ProjectDescription";
 
 export default function Main() {
   return (
@@ -16,5 +15,5 @@ export default function Main() {
       <ProjectDescription />
       <Footer />
     </div>
-  )
+  );
 }

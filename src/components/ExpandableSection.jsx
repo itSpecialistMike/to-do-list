@@ -1,15 +1,15 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from "react";
 
 export default function ExpandableSection({ title, brief, children }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const contentRef = useRef(null);
 
   // Для вычисления высоты раскрытого контента
-  const [height, setHeight] = useState('0px');
+  const [height, setHeight] = useState("0px");
 
   useEffect(() => {
     if (contentRef.current) {
-      setHeight(isExpanded ? `${contentRef.current.scrollHeight}px` : '0px');
+      setHeight(isExpanded ? `${contentRef.current.scrollHeight}px` : "0px");
     }
   }, [isExpanded]);
 
@@ -38,7 +38,7 @@ export default function ExpandableSection({ title, brief, children }) {
         className="text-indigo-600 font-semibold hover:underline transition"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        {isExpanded ? 'Скрыть' : 'Подробнее'}
+        {isExpanded ? "Скрыть" : "Подробнее"}
       </button>
     </div>
   );

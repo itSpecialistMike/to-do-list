@@ -1,27 +1,27 @@
 // src/components/Modal.jsx
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from "react";
 
 export default function Modal({ isOpen, onClose, onSubmit }) {
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const inputRef = useRef(null)
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const inputRef = useRef(null);
 
   useEffect(() => {
     if (isOpen) {
-      setTitle('')
-      setDescription('')
-      setTimeout(() => inputRef.current?.focus(), 0)
+      setTitle("");
+      setDescription("");
+      setTimeout(() => inputRef.current?.focus(), 0);
     }
-  }, [isOpen])
+  }, [isOpen]);
 
   const handleSubmit = () => {
     if (title.trim()) {
-      onSubmit(title, description)
-      onClose()
+      onSubmit(title, description);
+      onClose();
     }
-  }
+  };
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/40 backdrop-blur-sm">
@@ -57,5 +57,5 @@ export default function Modal({ isOpen, onClose, onSubmit }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

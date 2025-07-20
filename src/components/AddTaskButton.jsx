@@ -9,5 +9,5 @@ export default function AddTaskButton({ onClick }) {
     >
       Добавить задачу
     </button>
-  )
+  );
 }

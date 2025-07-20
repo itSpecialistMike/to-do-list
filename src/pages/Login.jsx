@@ -1,5 +1,5 @@
 // src/pages/Login.jsx
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
@@ -25,16 +25,16 @@ export default function Login() {
           </button>
         </form>
         <p className="mt-4 text-center text-sm">
-          Нет аккаунта?{' '}
+          Нет аккаунта?{" "}
           <Link to="/register" className="text-blue-600 hover:underline">
             Зарегистрироваться
           </Link>
         </p>
-        <hr className="my-6 border-gray-200 sm:mx-auto"/>
-        <p className='mt-2 text-center text-sm'>
-            <Link to='/#' className="text-blue-600 hover:underline">
-                Вернуться на главную
-            </Link>
+        <hr className="my-6 border-gray-200 sm:mx-auto" />
+        <p className="mt-2 text-center text-sm">
+          <Link to="/#" className="text-blue-600 hover:underline">
+            Вернуться на главную
+          </Link>
         </p>
       </div>
     </div>

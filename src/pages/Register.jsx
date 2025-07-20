@@ -1,5 +1,5 @@
 // src/pages/Register.jsx
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export default function Register() {
   return (
@@ -30,16 +30,16 @@ export default function Register() {
           </button>
         </form>
         <p className="mt-4 text-center text-sm">
-          Уже есть аккаунт?{' '}
+          Уже есть аккаунт?{" "}
           <Link to="/login" className="text-blue-600 hover:underline">
             Войти
           </Link>
         </p>
-        <hr className="my-6 border-gray-200 sm:mx-auto"/>
-        <p className='mt-2 text-center text-sm'>
-            <Link to='/#' className="text-blue-600 hover:underline">
-                Вернуться на главную
-            </Link>
+        <hr className="my-6 border-gray-200 sm:mx-auto" />
+        <p className="mt-2 text-center text-sm">
+          <Link to="/#" className="text-blue-600 hover:underline">
+            Вернуться на главную
+          </Link>
         </p>
       </div>
     </div>

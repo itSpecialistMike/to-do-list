@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
 export default function TaskDetailsModal({
   isOpen,
@@ -8,47 +8,47 @@ export default function TaskDetailsModal({
   completed,
   onComplete,
   onDelete,
-  onSave // добавляем callback для сохранения изменений { title, description }
+  onSave, // добавляем callback для сохранения изменений { title, description }
 }) {
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
-  const [isCompleted, setIsCompleted] = useState(completed)
-  const [isEditing, setIsEditing] = useState(false)
-  const [editTitle, setEditTitle] = useState(title)
-  const [editDescription, setEditDescription] = useState(description)
+  const [isCompleted, setIsCompleted] = useState(completed);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editTitle, setEditTitle] = useState(title);
+  const [editDescription, setEditDescription] = useState(description);
 
   // Сброс при открытии или смене задачи
   useEffect(() => {
-    setIsCompleted(completed)
-    setIsEditing(false)
-    setEditTitle(title)
-    setEditDescription(description)
-  }, [completed, title, description, isOpen])
+    setIsCompleted(completed);
+    setIsEditing(false);
+    setEditTitle(title);
+    setEditDescription(description);
+  }, [completed, title, description, isOpen]);
 
   const handleCompleteClick = () => {
-    onComplete()
-    setIsCompleted(true)
-  }
+    onComplete();
+    setIsCompleted(true);
+  };
 
   const handleDeleteClick = () => {
-    onDelete()
-    onClose()
-  }
+    onDelete();
+    onClose();
+  };
 
   const handleSaveEdit = () => {
-    if (editTitle.trim() === '') {
-      alert('Заголовок не может быть пустым')
-      return
+    if (editTitle.trim() === "") {
+      alert("Заголовок не может быть пустым");
+      return;
     }
-    onSave({ title: editTitle.trim(), description: editDescription.trim() })
-    setIsEditing(false)
-  }
+    onSave({ title: editTitle.trim(), description: editDescription.trim() });
+    setIsEditing(false);
+  };
 
   const handleCancelEdit = () => {
-    setIsEditing(false)
-    setEditTitle(title)
-    setEditDescription(description)
-  }
+    setIsEditing(false);
+    setEditTitle(title);
+    setEditDescription(description);
+  };
 
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/40 backdrop-blur-sm">
@@ -89,7 +89,7 @@ export default function TaskDetailsModal({
 
         <div
           className="m-4 overflow-y-auto whitespace-pre-wrap text-gray-800 pr-2 mb-6"
-          style={{ maxHeight: '50vh' }}
+          style={{ maxHeight: "50vh" }}
         >
           {isEditing ? (
             <textarea
@@ -151,5 +151,5 @@ export default function TaskDetailsModal({
         </div>
       </div>
     </div>
-  )
+  );
 }

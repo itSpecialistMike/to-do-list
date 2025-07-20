@@ -9,7 +9,10 @@ export default function ProjectDescription() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="rounded-4xl p-10 mx-auto w-full max-w-screen-xl my-30 shadow-2xl bg-white space-y-20" id="ProjectDescription">
+    <div
+      className="rounded-4xl p-10 mx-auto w-full max-w-screen-xl my-30 shadow-2xl bg-white space-y-20"
+      id="ProjectDescription"
+    >
       {/* Что такое To-Do List? */}
       <section className="p-4">
         <h1 className="text-4xl font-extrabold mb-6 text-gray-900">
