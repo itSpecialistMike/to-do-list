@@ -21,22 +21,22 @@ export default function Carousel() {
   return (
     <div className="w-full relative min-h-[300px]">
       {/* Переключатели */}
-      <div className="flex justify-center items-center mb-4 space-x-4 text-lg font-semibold select-none">
+      <div className="flex justify-center items-center mb-4 space-x-4 font-semibold select-none">
         <button
           onClick={prevSlide}
-          className="px-3 py-1 text-6xl font-bold rounded hover:scale-160 transition-transform duration-300"
+          className="px-3 py-1 text-3xl font-bold rounded hover:scale-160 transition-transform duration-300"
           aria-label="Previous Slide"
         >
           &lt;
         </button>
 
-        <span className="text-center text-6xl font-bold hover:scale-110 transition-transform duration-300 text-black my-20">
+        <span className="text-center text-3xl font-bold hover:scale-110 transition-transform duration-300 text-black my-20">
           {slides[currentIndex].label}
         </span>
 
         <button
           onClick={nextSlide}
-          className="px-3 py-1 text-6xl font-bold rounded transition-transform duration-300 hover:scale-160"
+          className="px-3 py-1 text-3xl font-bold rounded transition-transform duration-300 hover:scale-160"
           aria-label="Next Slide"
         >
           &gt;

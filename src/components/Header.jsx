@@ -1,7 +1,7 @@
 // src/components/Header.jsx
 import { useState } from "react";
 import icon from '../assets/icon.svg';
-import monke from '../assets/monke-loading.gif';
+import monke from '../assets/monke.mp4';
 
 export default function Header() {
   const [isProductOpen, setIsProductOpen] = useState(false);
@@ -19,7 +19,7 @@ export default function Header() {
         <div className="flex lg:flex-1">
           <a href="#" className="flex items-center -m-1.5 p-1.5">
             <img src={icon} alt="Icon" className="h-20 w-20 mr-6 hover:scale-130 transition-transform duration-500" />
-            <h1 className="font-bold text-shadow-2xs">To-Do List...</h1>
+            <h1 className="font-bold">To-Do List...</h1>
           </a>
         </div>
 
@@ -29,7 +29,7 @@ export default function Header() {
             <button
               type="button"
               onClick={toggleProductMenu}
-              className="flex items-center gap-x-1 font-semibold text-gray-900"
+              className="flex items-center gap-x-1 text-gray-900"
             >
               Product
               <svg
@@ -52,14 +52,20 @@ export default function Header() {
               <div className="absolute left-1/2 z-10 mt-3 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                 {/* Вставь сюда свой выпадающий список, который у тебя уже есть */}
                 {/* Это тот самый большой блок с пунктами: Analytics, Engagement и т.д. */}
-                <img src={monke} />
+                {/* <img src={monke} /> */}
+                <video
+                  src={monke}
+                  autoPlay
+                  onEnded={() => setIsProductOpen(false)}
+                  className="w-full h-auto"
+                />
               </div>
             )}
           </div>
         </div>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className=" font-semibold text-gray-900">
+          <a href="#" className=" text-gray-900">
             Log in <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
