@@ -1,6 +1,7 @@
 // src/components/Header.jsx
 import { useState } from "react";
-import icon from '../assets/icon.svg'
+import icon from '../assets/icon.svg';
+import monke from '../assets/monke-loading.gif';
 
 export default function Header() {
   const [isProductOpen, setIsProductOpen] = useState(false);
@@ -51,19 +52,10 @@ export default function Header() {
               <div className="absolute left-1/2 z-10 mt-3 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                 {/* Вставь сюда свой выпадающий список, который у тебя уже есть */}
                 {/* Это тот самый большой блок с пунктами: Analytics, Engagement и т.д. */}
+                <img src={monke} />
               </div>
             )}
           </div>
-
-          <a href="#" className=" font-semibold text-gray-900">
-            Features
-          </a>
-          <a href="#" className=" font-semibold text-gray-900">
-            Marketplace
-          </a>
-          <a href="#" className=" font-semibold text-gray-900">
-            Company
-          </a>
         </div>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
