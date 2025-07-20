@@ -11,7 +11,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 const USE_MOCK = import.meta.env.VITE_USE_MOCK === "false";
 
 export default function TaskGrid() {
-  // 🧠 Состояние задач
+  //  Состояние задач
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function TaskGrid() {
     }
   }, []);
 
-  // ➕ Добавление новой задачи
+  //  Добавление новой задачи
   const addTask = async (title, description) => {
     try {
       const response = await fetch(`api/create`, {
