@@ -1,7 +1,8 @@
 // src/components/Header.jsx
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 import icon from '../assets/icon.svg';
-import monke from '../assets/monke.mp4';
+import monke from '../assets/monke.gif';
 
 export default function Header() {
   const [isProductOpen, setIsProductOpen] = useState(false);
@@ -31,7 +32,7 @@ export default function Header() {
               onClick={toggleProductMenu}
               className="flex items-center gap-x-1 text-gray-900"
             >
-              Product
+              info
               <svg
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -49,25 +50,47 @@ export default function Header() {
             </button>
 
             {isProductOpen && (
-              <div className="absolute left-1/2 z-10 mt-3 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+              <div className="
+                  absolute left-1/2 z-10
+                   mt-3 w-screen max-w-md
+                    -translate-x-1/2 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5
+                    my-6 gap-6 p-6 ">
                 {/* Вставь сюда свой выпадающий список, который у тебя уже есть */}
                 {/* Это тот самый большой блок с пунктами: Analytics, Engagement и т.д. */}
                 {/* <img src={monke} /> */}
-                <video
-                  src={monke}
-                  autoPlay
-                  onEnded={() => setIsProductOpen(false)}
-                  className="w-full h-auto"
-                />
+                <div className="flex justify-center items-center">
+                  <div className="">
+                    <h1 className="text-xl font-semibold text-gray-800 mb-2">🚧 Проект в разработке</h1>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      Спасибо за проявленный интерес! <br/> Вы можете следить за прогрессом в репозитории на GitHub.<br />
+                      <a
+                        className="text-blue-600 hover:underline font-medium"
+                        href="https://github.com/itSpecialistMike/to-do-list"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Перейти к репозиторию →
+                      </a>
+                    </p>
+                  </div>
+                  <img
+                    src={monke}
+                    alt="Разработка"
+                    className="w-36 h-36 rounded-2xl shadow-md object-cover"
+                  />
+                </div>
+
+                
+                
               </div>
             )}
           </div>
         </div>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className=" text-gray-900">
-            Log in <span aria-hidden="true">&rarr;</span>
-          </a>
+          <Link to='/login' className=" text-gray-900">
+            Login <span aria-hidden="true">&rarr;</span>
+          </Link>
         </div>
       </nav>
     </header>
