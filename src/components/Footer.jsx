@@ -33,7 +33,7 @@ export default function Footer() {
 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-center">
                     <span className="text-sm sm:text-center text-gray-400 mb-6">
-                        © 2027 <a href="#" className="hover:underline">Егор и Мишаня™</a>. All Rights Reserved.
+                        © 2027 <a href="#" className="hover:underline">Егор, Мишаня и Сергега™</a>. All Rights Reserved.
                     </span>
                     <div className="flex justify-center mb-6 sm:mt-0 space-x-4">
                         <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">

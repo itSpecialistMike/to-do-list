@@ -9,7 +9,7 @@ import ProjectDescription from '../components/ProjectDescription';
 
 export default function Main() {
   return (
-    <div>
+    <div className="scroll-smooth">
       <LoadingModal />
       <Header />
       <Carousel />

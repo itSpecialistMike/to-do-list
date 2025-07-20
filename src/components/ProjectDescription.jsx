@@ -1,79 +1,230 @@
 // src/components/ProjectDescription.jsx
-import fabric from '../assets/fabric.gif' 
+import fabric from "../assets/fabric.gif";
+import restpic from "../assets/rest-api.png";
+import golangguy from "../assets/golangguy.png";
+import { useState } from "react";
+import ExpandableSection from "./ExpandableSection";
 
 export default function ProjectDescription() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
-    <div className="rounded-4xl p-10 mx-auto w-full max-w-screen-xl my-20 shadow-2xl bg-white space-y-12">
-      
+    <div className="rounded-4xl p-10 mx-auto w-full max-w-screen-xl my-30 shadow-2xl bg-white space-y-20" id="ProjectDescription">
       {/* Что такое To-Do List? */}
-      <section>
-        <h1 className="text-3xl font-bold mb-5">Что такое To-Do List?</h1>
+      <section className="p-4">
+        <h1 className="text-4xl font-extrabold mb-6 text-gray-900">
+          Что такое <span className="text-indigo-600">To-Do List</span>?
+        </h1>
         <div className="flex flex-col md:flex-row items-center gap-10">
-          <p className="text-gray-800 text-lg max-w-5xl leading-relaxed">
-            To-Do List — это простое, но эффективное приложение для управления задачами. 
-            Оно позволяет пользователям создавать списки дел, отмечать выполненные пункты, 
-            редактировать и удалять задачи. Цель проекта — помочь пользователям организовать 
-            рабочие процессы и личные планы, повысить продуктивность и снизить уровень забывчивости.
-            Приложение интуитивно понятно, минималистично по дизайну и адаптировано под любые устройства.
+          <p className="text-gray-800 text-lg leading-relaxed max-w-5xl">
+            <strong>To-Do List</strong> — это простое, но эффективное приложение
+            для управления задачами. Оно позволяет создавать списки дел,
+            редактировать, удалять задачи и отмечать их выполнение. Интерфейс
+            интуитивен, минималистичен и адаптирован под любые устройства — от
+            мобильных до десктопов.
           </p>
         </div>
-        
       </section>
 
       {/* Техническая реализация клиентской части */}
-      <section>
-        <h2 className="text-2xl font-semibold mb-3">Техническая реализация клиентской части</h2>
-        <p className="text-gray-800 mb-3 leading-relaxed">
-          Клиентская часть разработана с использованием <strong>React</strong> — современной JavaScript-библиотеки для построения интерфейсов. Она обеспечивает отзывчивый и динамичный UI, плавную навигацию и высокую производительность.
-        </p>
-        <ul className="list-disc list-inside space-y-1 text-gray-700">
-          <li><strong>Redux</strong> — глобальное управление состоянием (например, для авторизации и задач).</li>
-          <li><strong>LocalStorage</strong> — локальное сохранение задач с офлайн-доступом.</li>
-          <li><strong>React Router</strong> — маршрутизация между страницами.</li>
-          <li>Модульная архитектура компонентов.</li>
-          <li>Адаптивный дизайн под все устройства.</li>
-        </ul>
+      <section className="bg-gradient-to-br from-slate-100 to-white p-8 rounded-2xl shadow-inner">
+        <ExpandableSection
+          title="Клиентская часть"
+          brief={
+            <>
+              Интерфейс создан на <strong>React</strong> с фокусом на
+              отзывчивость, скорость и модульность.
+            </>
+          }
+        >
+          <ul className="list-disc list-inside space-y-2 text-gray-700 pl-2">
+            <li>
+              <strong>Redux</strong> — управление состоянием.
+            </li>
+            <li>
+              <strong>LocalStorage</strong> — офлайн-доступ.
+            </li>
+            <li>
+              <strong>React Router</strong> — маршруты без перезагрузки.
+            </li>
+            <li>Компонентный подход и переиспользуемость.</li>
+            <li>Полная адаптивность для всех экранов.</li>
+          </ul>
+        </ExpandableSection>
       </section>
 
-      {/* Реализация бэкенда */}
-      <section>
-        <h2 className="text-2xl font-semibold mb-3">Реализация бэкенда</h2>
-        <p className="text-gray-800 leading-relaxed">
-          Серверная часть реализована на языке <strong>Go</strong> с использованием REST API. Бэкенд обрабатывает регистрацию, аутентификацию, CRUD-операции для задач и взаимодействие с базой данных <strong>PostgreSQL</strong>. Архитектура сервиса организована по принципам чистого кода с разделением на слои контроллеров, сервисов и хранилища.
-        </p>
+      <section className="bg-white rounded-2xl shadow-lg p-8 space-y-10 border-l-4 border-indigo-500">
+        <ExpandableSection
+          title="Серверная часть"
+          brief={
+            <>
+              <strong className="text-xl">Бэкенд</strong> построен на{" "}
+              <strong>Go</strong> и реализует <strong>REST API</strong> —
+              архитектурный стиль на основе HTTP и CRUD-операций.
+            </>
+          }
+        >
+          <div className="md:flex gap-8">
+            <img
+              src={restpic}
+              className="hidden md:block h-[300px] pt-6"
+              alt="REST API"
+            />
+            <div className="text-gray-800 leading-relaxed space-y-4">
+              <p>
+                REST API обеспечивает простую и предсказуемую структуру для
+                интеграций и фронтенда. Вся логика охватывает{" "}
+                <strong>CRUD-операции</strong>, регистрацию, авторизацию и
+                валидацию сессий.
+              </p>
+
+              <p>
+                Хранение реализовано на <strong>PostgreSQL</strong> — надёжной
+                реляционной СУБД, гарантирующей безопасность и согласованность
+                данных.
+              </p>
+
+              <p>
+                Вся архитектура придерживается принципов <em>чистого кода</em>:
+              </p>
+
+              <ul className="list-disc list-inside text-gray-700 space-y-1">
+                <li>
+                  <strong>Контроллеры</strong> — обрабатывают HTTP-запросы;
+                </li>
+                <li>
+                  <strong>Сервисы</strong> — реализуют бизнес-логику;
+                </li>
+                <li>
+                  <strong>Репозитории</strong> — работают с БД и SQL.
+                </li>
+              </ul>
+
+              <p>
+                Такой подход делает сервер стабильным, читаемым и
+                масштабируемым. REST упрощает отладку и интеграцию.
+              </p>
+            </div>
+          </div>
+
+          <div className="md:flex gap-8 mt-10">
+            <div className="text-gray-800 leading-relaxed space-y-4">
+              <p>
+                <strong className="text-xl">Микросервис</strong> авторизации
+                реализован через <strong>gRPC</strong> — высокопроизводительный
+                RPC-фреймворк от Google.
+              </p>
+
+              <p>
+                Он использует бинарный формат <strong>Protocol Buffers</strong>{" "}
+                и HTTP/2 — это уменьшает объём передаваемых данных и повышает
+                скорость.
+              </p>
+
+              <p>gRPC особенно эффективен при:</p>
+
+              <ul className="list-disc list-inside text-gray-700 space-y-1">
+                <li>Минимизации задержек между сервисами;</li>
+                <li>Жёсткой типизации и автогенерации кода;</li>
+                <li>Поддержке стриминга (одно- и двунаправленного);</li>
+                <li>Снижении избыточности по сравнению с JSON;</li>
+                <li>Высокой масштабируемости при нагрузках.</li>
+              </ul>
+
+              <p>
+                Это решение делает архитектуру гибкой, производительной и
+                готовой к масштабированию.
+              </p>
+            </div>
+
+            <img
+              src={golangguy}
+              className="hidden md:block h-[260px] pt-6"
+              alt="Golang Dev"
+            />
+          </div>
+        </ExpandableSection>
       </section>
+
+      {/* Бэкенд */}
 
       {/* Инфраструктура */}
-      <section>
-        <h2 className="text-2xl font-semibold mb-3">Инфраструктура</h2>
-        <p className="text-gray-800 max-w-4xl text-pretty leading-relaxed">
-          Проект развернут в <strong>Kubernetes</strong>-кластере. Все компоненты — клиент, сервер и база данных — упакованы в Docker-контейнеры и управляются с помощью манифестов Kubernetes. Это обеспечивает гибкость масштабирования, отказоустойчивость и простоту обновлений.
-        </p>
+      <section className="bg-gradient-to-br from-slate-100 to-white p-8 rounded-2xl shadow-inner">
+        <ExpandableSection
+          title="Инфраструктура"
+          brief={
+            <>
+              Проект развернут в <strong>Kubernetes</strong>-кластере с
+              использованием Docker-контейнеров. Масштабирование и
+              отказоустойчивость достигаются через автоматизацию и манифесты.
+            </>
+          }
+        >
+          <ul className="list-disc list-inside space-y-2 text-gray-700 pl-2">
+            <li>Автоматическое масштабирование под нагрузкой;</li>
+            <li>Балансировка трафика и маршрутизация через Ingress;</li>
+            <li>Хранение конфигураций и секретов (ConfigMap и Secrets);</li>
+            <li>Мониторинг и автоперезапуск при сбоях;</li>
+            <li>Высокая доступность и отказоустойчивость.</li>
+          </ul>
+          <p className="mt-4 text-gray-700">
+            Благодаря такой инфраструктуре все изменения доставляются в
+            продакшен быстро и надежно, без участия человека.
+          </p>
+        </ExpandableSection>
       </section>
 
       {/* Автоматизация */}
-      <section className="">
-        <div className="md:flex md:items-center gap-10">
-          {/* Левая колонка: заголовок + текст */}
-          <div className="flex-1">
-            <h2 className="text-3xl font-bold mb-6 text-center md:text-left">
-              Автоматизации
-            </h2>
-            <p className="text-gray-800 leading-relaxed text-lg max-w-4xl text-wrap md:text-left">
-              Процесс <strong>CI/CD</strong> автоматизирован с помощью <strong>Jenkins</strong>. 
-              При каждом коммите в репозиторий запускается пайплайн, включающий:
-              сборку контейнеров, прогон тестов, публикацию Docker-образов и обновление приложения 
-              в <strong>Kubernetes</strong> — всё это происходит автоматически, без ручного вмешательства.
-            </p>
-          </div>
+      <section className="bg-white rounded-2xl shadow-lg p-8 space-y-10 border-l-4 border-indigo-500">
+        <ExpandableSection
+          title="Автоматизация"
+          brief={
+            <>
+              Процесс <strong>CI/CD</strong> автоматизирован с помощью{" "}
+              <strong>Jenkins</strong>. Пайплайн собирает Docker-образы,
+              прогоняет тесты, публикует образы и разворачивает приложения в{" "}
+              <strong>Kubernetes</strong>.
+            </>
+          }
+        >
+          <div className="md:flex gap-8">
+            <img
+              src={fabric}
+              className="hidden md:block h-[300px] pt-6 rounded-3xl border shadow-lg"
+              alt="CI/CD pipeline"
+            />
+            <div className="text-gray-800 leading-relaxed space-y-4 max-w-xl">
+              <p>
+                <strong>CI (Continuous Integration)</strong> — непрерывная
+                интеграция, при которой код автоматически собирается и
+                тестируется при каждом коммите. Это позволяет быстро выявлять
+                ошибки и сохранять качество проекта.
+              </p>
 
-          {/* Правая колонка: гифка */}
-          <div className="mt-8 md:mt-20 flex justify-center">
-            <img src={fabric} alt="CI/CD pipeline" className="w-60 rounded-3xl" />
+              <p>
+                <strong>CD (Continuous Delivery/Deployment)</strong>{" "}
+                обеспечивает автоматическую публикацию протестированных версий
+                приложения в staging и production окружения, минимизируя ручные
+                операции и человеческий фактор.
+              </p>
+
+              <ul className="list-disc list-inside text-gray-700 space-y-1">
+                <li>Автоматическая сборка и тестирование Docker-образов;</li>
+                <li>Публикация образов в Docker Registry;</li>
+                <li>Развёртывание обновлений на серверы или в Kubernetes;</li>
+                <li>Мониторинг состояния пайплайна и уведомления о сбоях;</li>
+                <li>Быстрая обратная связь для разработчиков.</li>
+              </ul>
+
+              <p>
+                Такой подход повышает стабильность, скорость выпуска новых
+                версий и позволяет команде сосредоточиться на разработке, а не
+                на рутинных операциях.
+              </p>
+            </div>
           </div>
-        </div>        
-    </section>
-    
+        </ExpandableSection>
+      </section>
     </div>
   );
 }
