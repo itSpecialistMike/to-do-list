@@ -1,4 +1,3 @@
-// src/components/Header.jsx
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import icon from "../assets/icon.svg";
@@ -6,10 +5,9 @@ import monke from "../assets/monke.gif";
 
 export default function Header() {
   const [isProductOpen, setIsProductOpen] = useState(false);
-
-  const toggleProductMenu = () => {
-    setIsProductOpen((prev) => !prev);
-  };
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const toggleProductMenu = () => setIsProductOpen((prev) => !prev);
+  const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
 
   return (
     <header className="bg-white text-2xl shadow-2xl">
@@ -17,6 +15,7 @@ export default function Header() {
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
       >
+        {/* Лого */}
         <div className="flex lg:flex-1">
           <a href="#" className="flex items-center -m-1.5 p-1.5">
             <img
@@ -28,6 +27,7 @@ export default function Header() {
           </a>
         </div>
 
+        {/* Десктоп: info + login */}
         <div className="hidden lg:flex lg:gap-x-12">
           <div className="relative">
             <button
@@ -51,57 +51,14 @@ export default function Header() {
                 />
               </svg>
             </button>
-
             {isProductOpen && (
-              <div
-                className="
-                  absolute left-1/2 z-10
-                   mt-3 w-screen max-w-md
-                    -translate-x-1/2 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5
-                    my-6 gap-6 p-6 "
-              >
-                {/* Вставь сюда свой выпадающий список, который у тебя уже есть */}
-                {/* Это тот самый большой блок с пунктами: Analytics, Engagement и т.д. */}
-                {/* <img src={monke} /> */}
-                <div className="flex justify-center items-center">
-                  <div className="">
-                    <h1 className="text-xl font-semibold text-gray-800 mb-2">
-                      🚧 Проект в разработке
-                    </h1>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      Спасибо за проявленный интерес! <br /> Вы можете следить
-                      за прогрессом в репозитории на GitHub.
-                      <br />
-                      <a
-                        className="text-blue-600 hover:underline font-medium"
-                        href="https://github.com/itSpecialistMike/to-do-list"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Перейти к репозиторию →
-                      </a>{" "}
-                      <br />
-                      <a
-                        className="text-blue-600 hover:underline font-medium"
-                        href="#ProjectDescription"
-                      >
-                        Описние проекта →
-                      </a>
-                    </p>
-                  </div>
-                  <img
-                    src={monke}
-                    alt="Разработка"
-                    className="w-36 h-36 rounded-2xl shadow-md object-cover"
-                  />
-                </div>
-              </div>
+              <InfoDropdown monke={monke} />
             )}
           </div>
         </div>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link to="/login" className=" text-gray-900 flex items-center gap-3">
+          <Link to="/login" className="text-gray-900 flex items-center gap-3">
             Login
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +74,114 @@ export default function Header() {
             </svg>
           </Link>
         </div>
+
+        {/* Мобильная иконка гамбургера */}
+        <div className="lg:hidden">
+          <button
+            onClick={toggleMobileMenu}
+            className="text-gray-900 focus:outline-none"
+            aria-label="Open menu"
+          >
+            <svg
+              className="h-10 w-10"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {isMobileMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
       </nav>
+
+      {/* Мобильное меню */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden px-6 pb-6">
+          <div className="space-y-4">
+            <Link
+              to="/login"
+              className="block text-gray-900 text-xl font-medium"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Login
+            </Link>
+            <button
+              onClick={toggleProductMenu}
+              className="flex items-center gap-2 text-gray-900 text-xl font-medium"
+            >
+              info
+              <svg
+                className={`w-5 h-5 transition-transform ${
+                  isProductOpen ? "rotate-180" : ""
+                }`}
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 011.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z"
+                />
+              </svg>
+            </button>
+            {isProductOpen && <InfoDropdown monke={monke} />}
+          </div>
+        </div>
+      )}
     </header>
+  );
+}
+
+function InfoDropdown({ monke }) {
+  return (
+    <div className="mt-4 w-full max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 p-6">
+      <div className="flex justify-center items-center">
+        <div>
+          <h1 className="text-xl font-semibold text-gray-800 mb-2">
+            🚧 Проект в разработке
+          </h1>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            Спасибо за проявленный интерес! <br /> Вы можете следить за
+            прогрессом в репозитории на GitHub.
+            <br />
+            <a
+              className="text-blue-600 hover:underline font-medium"
+              href="https://github.com/itSpecialistMike/to-do-list"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Перейти к репозиторию →
+            </a>
+            <br />
+            <a
+              className="text-blue-600 hover:underline font-medium"
+              href="#ProjectDescription"
+            >
+              Описние проекта →
+            </a>
+          </p>
+        </div>
+        <img
+          src={monke}
+          alt="Разработка"
+          className="w-36 h-36 rounded-2xl shadow-md object-cover ml-4"
+        />
+      </div>
+    </div>
   );
 }
