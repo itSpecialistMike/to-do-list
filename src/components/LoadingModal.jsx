@@ -1,6 +1,6 @@
 // src/components/LoadingModal.jsx
 import { useEffect, useState } from "react";
-import gif from "../assets/loading-wut.gif";
+import gif from "../assets/monke-loading.gif";
 
 export default function LoadingModal() {
   const [visible, setVisible] = useState(true);
@@ -8,7 +8,7 @@ export default function LoadingModal() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(false);
-    }, 1000); // Закроется через 1 сек
+    }, 3000); // Закроется через 1 сек
 
     return () => clearTimeout(timer);
   }, []);

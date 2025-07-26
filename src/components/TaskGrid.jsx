@@ -20,8 +20,7 @@ export default function TaskGrid() {
       setTasks(mockTasks);
     } else {
       //  Загружаем с API
-      // fetch(`${API_URL}/list`)
-      fetch("/api/list")
+      fetch(`${API_URL}/list`)
         .then((res) => res.json())
         .then((data) => setTasks(data))
         .catch((err) => console.error("Ошибка загрузки с API:", err));
@@ -31,7 +30,7 @@ export default function TaskGrid() {
   //  Добавление новой задачи
   const addTask = async (title, description) => {
     try {
-      const response = await fetch(`api/create`, {
+      const response = await fetch(`${API_URL}/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,7 +52,7 @@ export default function TaskGrid() {
   //  Удаление задачи
   const handleDelete = async (idToDelete) => {
     try {
-      const response = await fetch(`api/delete/${idToDelete}`, {
+      const response = await fetch(`${API_URL}/delete/${idToDelete}`, {
         method: "DELETE",
       });
 
@@ -70,7 +69,7 @@ export default function TaskGrid() {
   //  Отметить задачу как выполненную
   const handleComplete = async (id) => {
     try {
-      const response = await fetch(`api/done/${id}`, {
+      const response = await fetch(`${API_URL}/done/${id}`, {
         method: "PUT",
       });
 

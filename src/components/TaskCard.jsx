@@ -24,7 +24,7 @@ export default function TaskCard({
           e.stopPropagation();
           onDelete(id);
         }}
-        className="absolute top-5 right-5 text-sm transition duration-300 hover:scale-300 hover:rotate-360"
+        className="absolute top-5 right-5 text-sm transition duration-300 hover:scale-250 hover:rotate-360"
       >
         ❌
       </button>
